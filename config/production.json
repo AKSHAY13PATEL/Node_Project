@@ -1,0 +1,6 @@
+{
+    "name" : "my first application -- production",
+    "mail" : {
+        "host_name" : "production host"
+    }
+}
