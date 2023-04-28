@@ -2,7 +2,8 @@
 //module loading
 const express = require('express');
 const movie = require('./routes/movies');
-const user = require('./routes/users');
+const customer = require('./routes/customers');
+const genre =  require('./routes/genres');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -12,7 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 app.use(express.static('public'));
 app.use('/api/movie',movie);
-app.use('/api/user',user);
+app.use('/api/customer',customer);
+app.use('/api/genre',genre);
 
 
 //connecting to databse
