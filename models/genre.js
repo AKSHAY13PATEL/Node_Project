@@ -3,7 +3,7 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 
 const genreSchema = new mongoose.Schema({
-    name : {
+    genreName : {
         type : String,
         required : true,
         minlength : 5,

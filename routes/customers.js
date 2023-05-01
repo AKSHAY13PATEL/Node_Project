@@ -16,6 +16,7 @@ router.get('/',async (req,res)=>{
 
 router.get('/:id', async (req,res)=>{
     try{
+        
         const customer = await Customer.findById({_id : req.params.id});
         if(!customer) return res.status(404).send('Customer with given id does not found');
         res.send(customer);

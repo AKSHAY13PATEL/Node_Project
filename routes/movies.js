@@ -31,7 +31,6 @@ router.get('/:id', async (req,res)=>{
 
 router.post('/',async (req,res)=>{
     
-    
     const {error} = validateMovie(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     
@@ -43,7 +42,7 @@ router.post('/',async (req,res)=>{
         title : req.body.title,
         genre : {
             _id : genre._id,
-            name : genre.name
+            genreName : genre.genreName
         },
         numberInStock : req.body.numberInStock,
         dailyRentalRate : req.body.dailyRentalRate

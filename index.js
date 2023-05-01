@@ -4,6 +4,7 @@ const express = require('express');
 const movie = require('./routes/movies');
 const customer = require('./routes/customers');
 const genre =  require('./routes/genres');
+const rental =  require('./routes/rentals');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.static('public'));
 app.use('/api/movie',movie);
 app.use('/api/customer',customer);
 app.use('/api/genre',genre);
+app.use('/api/rental',rental);
 
 
 //connecting to databse
