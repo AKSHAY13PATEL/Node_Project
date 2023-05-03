@@ -1,3 +1,4 @@
 {
-    "name" : "my first application"
+    "name" : "my first application",
+    "JWT_PRIVATE_KEY" : ""
 }

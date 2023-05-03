@@ -1,11 +1,13 @@
 
 const express = require('express');
 const bcrypt = require('bcrypt');
-const router = express.Router();
+const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const Joi = require('joi');
-
+const config = require('config');
 const {User} = require('../models/user');
+
+const router = express.Router();
 
 router.post('/', async (req,res)=>{
     
@@ -18,7 +20,8 @@ router.post('/', async (req,res)=>{
     const validPassword = await bcrypt.compare(req.body.password,user.password);
     if(!validPassword) return res.status(400).send('email or password is invalid');
 
-    res.send('User authenticated');
+    const token = user.genAuthToken();
+    res.header('x-auth-token',token).send('Logged in');
 
 })
 

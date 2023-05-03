@@ -8,6 +8,7 @@ const user =  require('./routes/users');
 const rental =  require('./routes/rentals');
 const auth =  require('./routes/auth');
 const mongoose = require('mongoose');
+const config = require('config');
 
 const app = express();
 
@@ -22,7 +23,10 @@ app.use('/api/user',user);
 app.use('/api/rental',rental);
 app.use('/api/auth',auth);
 
-
+if(!config.get('JWT_PRIVATE_KEY')){
+    console.log('FATAL error : jwtPrivateKey not defined');
+    process.exit(1);
+}
 //connecting to databse
 mongoose.connect('mongodb://127.0.0.1:27017/movieDB')
     .then(()=> console.log("Connection successful"))

@@ -4,6 +4,7 @@ const router = express.Router();
 
 const {Genre, validateGenre} = require('../models/genre');
 const {Movie , validateMovie} = require('../models/movie');
+const { route } = require('./movies');
 
 router.get('/', async (req,res) => {
 
@@ -29,4 +30,12 @@ router.post('/', async (req,res)=>{
     
 })
 
+router.delete('/', async (req,res)=>{
+
+    const {error} = validateGenre(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+
+    const deletedGenre = await Genre.findOneAndDelete({genreName : req.body.genreName});
+    res.send(deletedGenre);
+})
 module.exports = router;

@@ -2,12 +2,16 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const config = require('config');
+const auth = require('../middleware/auth');
 
 const {User, validateUser} = require('../models/user');
 
-router.get('/', async (req,res) => {
+router.get('/me', auth, async (req,res) => {
 
-    const user = await User.find();
+    //getting currnt user details
+    const user = await User.findById(req.user._id);
     res.send(user);
 })
 
@@ -32,8 +36,9 @@ router.post('/', async (req,res)=>{
     });
 
     try{
+        const token = user.genAuthToken();
         await user.save();
-        res.send(user);
+        res.header('x-auth-token',token).send(user);
         res.end();
     }
     catch(error){

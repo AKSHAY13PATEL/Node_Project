@@ -1,0 +1,4 @@
+{
+    "JWT_PRIVATE_KEY" : "MYWEBSITE_JWT_PRIVATE_KEY",
+    "PORT" : "PORT"
+}

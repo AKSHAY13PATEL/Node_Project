@@ -92,8 +92,8 @@ router.delete('/:id',async (req,res)=> {
         res.send('Please enter valid ID');
     }
     
-    movie = await Movie.findByIdAndDelete(req.params.id);
-    res.send(movie);
+    let deletedMovie = await Movie.findByIdAndDelete(req.params.id);
+    res.send(deletedMovie);
 })
 
 
